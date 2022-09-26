@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/Models/TicTacToeModel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,10 +50,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _gameState = "Start Game";
+  var _gameModel = TicTacToeModel();
+  var _buttonTitles = List.generate(9, (index) => " ", growable: false);
 
   void _setGameState(String newState) {
     setState(() {
       _gameState = newState;
+    });
+  }
+
+  void _startGame() {
+    setState(() {
+      _gameModel = TicTacToeModel();
+      _gameState = _gameModel.gameState;
+      _buttonTitles = List.generate(9, (index) => " ", growable: false);
+    });
+  }
+
+  void _pressButtonAt(int row, int col) {
+    setState(() {
+      _gameModel.pressButtonAt(row, col);
+      _gameState = _gameModel.gameState;
     });
   }
 
@@ -87,36 +105,73 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(left: 24, right: 24),
                 children: <ElevatedButton>[
                   ElevatedButton(onPressed: (() {
-                    print("Button 0 pressed");
-                  }), child: Text("0")),
+                    //print("Button 0 pressed");
+                    this._pressButtonAt(0, 0);
+                    setState(() {
+                      _buttonTitles[0] = _gameModel.stringForButton(0, 0);
+                    });
+                  }), child: Text('${_buttonTitles[0]}', style: TextStyle(fontSize: 30),)),
                   ElevatedButton(onPressed: (() {
-                    print("Button 1 pressed");
-                  }), child: Text("1")),
+                    //print("Button 1 pressed");
+                    this._pressButtonAt(0, 1);
+                    setState(() {
+                      _buttonTitles[1] = _gameModel.stringForButton(0, 1);
+                    });
+                  }), child: Text('${_buttonTitles[1]}', style: TextStyle(fontSize: 30))),
                   ElevatedButton(onPressed: (() {
-                    print("Button 2 pressed");
-                  }), child: Text("2")),
+                    //print("Button 2 pressed");
+                    this._pressButtonAt(0, 2);
+                    setState(() {
+                      _buttonTitles[2] = _gameModel.stringForButton(0, 2);
+                    });
+                  }), child: Text('${_buttonTitles[2]}', style: TextStyle(fontSize: 30))),
                   ElevatedButton(onPressed: (() {
-                    print("Button 3 pressed");
-                  }), child: Text("3")),
+                    //print("Button 3 pressed");
+                    this._pressButtonAt(1, 0);
+                    setState(() {
+                      _buttonTitles[3] = _gameModel.stringForButton(1, 0);
+                    });
+                  }), child: Text('${_buttonTitles[3]}', style: TextStyle(fontSize: 30))),
                   ElevatedButton(onPressed: (() {
-                    print("Button 4 pressed");
-                  }), child: Text("4")),
+                    //print("Button 4 pressed");
+                    this._pressButtonAt(1, 1);
+                    setState(() {
+                      _buttonTitles[4] = _gameModel.stringForButton(1, 1);
+                    });
+                  }), child: Text('${_buttonTitles[4]}', style: TextStyle(fontSize: 30))),
                   ElevatedButton(onPressed: (() {
-                    print("Button 5 pressed");
-                  }), child: Text("5")),
+                    //print("Button 5 pressed");
+                    this._pressButtonAt(1, 2);
+                    setState(() {
+                      _buttonTitles[5] = _gameModel.stringForButton(1, 2);
+                    });
+                  }), child: Text('${_buttonTitles[5]}', style: TextStyle(fontSize: 30))),
                   ElevatedButton(onPressed: (() {
-                    print("Button 6 pressed");
-                  }), child: Text("6")),
+                    //print("Button 6 pressed");
+                    this._pressButtonAt(2, 0);
+                    setState(() {
+                      _buttonTitles[6] = _gameModel.stringForButton(2, 0);
+                    });
+                  }), child: Text('${_buttonTitles[6]}', style: TextStyle(fontSize: 30))),
                   ElevatedButton(onPressed: (() {
-                    print("Button 7 pressed");
-                  }), child: Text("7")),
+                    //print("Button 7 pressed");
+                    this._pressButtonAt(2, 1);
+                    setState(() {
+                      _buttonTitles[7] = _gameModel.stringForButton(2, 1);
+                    });
+                  }), child: Text('${_buttonTitles[7]}', style: TextStyle(fontSize: 30))),
                   ElevatedButton(onPressed: (() {
-                    print("Button 8 pressed");
-                  }), child: Text("8")),
+                    //print("Button 8 pressed");
+                    this._pressButtonAt(2, 2);
+                    setState(() {
+                      _buttonTitles[8] = _gameModel.stringForButton(2, 2);
+                    });
+                  }), child: Text('${_buttonTitles[8]}', style: TextStyle(fontSize: 30))),
                 ],
               ),
               ElevatedButton(onPressed: ((){
-                print("New Game pressed");
+                //print("New Game pressed");
+                this._startGame();
               }), child: Text("New Game")),
             ], // children
         ),
