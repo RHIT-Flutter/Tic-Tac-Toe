@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Tic-Tac-Toe'),
     );
   }
 }
@@ -48,16 +48,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String _gameState = "Start Game";
 
-  void _incrementCounter() {
+  void _setGameState(String newState) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _gameState = newState;
     });
   }
 
@@ -76,40 +71,56 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text(
+                '$_gameState',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)
+              ),
+              GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  crossAxisCount: 3),
+                shrinkWrap: true,
+                padding: EdgeInsets.only(left: 24, right: 24),
+                children: <ElevatedButton>[
+                  ElevatedButton(onPressed: (() {
+                    print("Button 0 pressed");
+                  }), child: Text("0")),
+                  ElevatedButton(onPressed: (() {
+                    print("Button 1 pressed");
+                  }), child: Text("1")),
+                  ElevatedButton(onPressed: (() {
+                    print("Button 2 pressed");
+                  }), child: Text("2")),
+                  ElevatedButton(onPressed: (() {
+                    print("Button 3 pressed");
+                  }), child: Text("3")),
+                  ElevatedButton(onPressed: (() {
+                    print("Button 4 pressed");
+                  }), child: Text("4")),
+                  ElevatedButton(onPressed: (() {
+                    print("Button 5 pressed");
+                  }), child: Text("5")),
+                  ElevatedButton(onPressed: (() {
+                    print("Button 6 pressed");
+                  }), child: Text("6")),
+                  ElevatedButton(onPressed: (() {
+                    print("Button 7 pressed");
+                  }), child: Text("7")),
+                  ElevatedButton(onPressed: (() {
+                    print("Button 8 pressed");
+                  }), child: Text("8")),
+                ],
+              ),
+              ElevatedButton(onPressed: ((){
+                print("New Game pressed");
+              }), child: Text("New Game")),
+            ], // children
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
